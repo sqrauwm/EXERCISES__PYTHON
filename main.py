@@ -1,207 +1,126 @@
-print('')
+import numpy as np
 
-class Kształty():
-     #definicja konstruktora
-    def __init__(self, x, y):
-        #deklarujemy atrybut
-        #self wskazuje że chodzi o zmienne własnie definiowanej klasy
-        self.x = x
-        self.y = y
-        self.opis = "To jest klasa dla ogólnych kształtów"
-    def pole(self):
-        return self.x * self.y
-
-    def obwod(self):
-        return 2 * self.x + 2 * self.y
-
-    def dodaj_opis(self, text):
-        self.opis = text
-
-    def skalowanie(self, czynnik):
-        self.x = self.x * czynnik
-        self.y = self.y * czynnik
-#klasa która dziedziczy po klasie Kształty
-class Kwadrat(Kształty):
-    def __init__(self,x):
-        self.x = x
-        self.y = x
-# i jeszcze klasa, która dziedziczy po klasie Kwadrat
-# bedzie definiwoać figurę złożoną z 3 kwadratów w kształcie litery L
-#  _
-# | |_
-# |_ _|
-class KwadratLiteraL(Kwadrat):
-    def obwod(self):
-        return 8 * self.x
-    def pole(self):
-        return 3 * self.x * self.y
-
-#inicjujemy klasę Kwadrat
-kwadrat = Kwadrat(10)
-#sprawdzenie metod z klasy bazowej
-print(kwadrat.obwod())
-print(kwadrat.pole())
-kwadrat.dodaj_opis("Nasza figura to kwadrat")
-print(kwadrat.opis)
-kwadrat.skalowanie(0.4)
-print(kwadrat.obwod())
-print("")
-#inicjujemy klasę KwadratLiteraL
-litera_l = KwadratLiteraL(10)
-print(litera_l.obwod())
-print(litera_l.pole())
-litera_l.dodaj_opis("Super Litera L")
-print(litera_l.opis)
-litera_l.skalowanie(0.5)
-print(litera_l.obwod())
-print("")
-#inicjacja prostokata
-prosto = Kształty(10,5)
-print(prosto.obwod())
-print(prosto.pole())
-prosto.dodaj_opis("Nasza figura to prostokat")
-print(prosto.opis)
-prosto.skalowanie(0.4)
-print(prosto.obwod())
-print("")
-#######################
-# class Kwadrat(Kształty):
-#     def __init__(self,x):
-#         self.x = x
-#         self.y = x
+# a = np.arange(0, 10)
 #
-# kwadrat = Kwadrat(5)
-# print(kwadrat)
+# print(a)
+# print(type(a)) #wypisanie typu zmiennej tablicy (nie jej elementów) -ndarray
+# print(a.dtype) #sprawdzenie typu danych tablicy
+#
+# a = np.arange(2, 10, dtype = 'int64') #inicjalizacja tablicy z konkertnym typem danych
+# print(a)
+# print(a.dtype)
+#
+# b = a.astype('float') #zapisywanie kopii tablicy jako tablicy z innym typem
+# print(b)
+# print(b.dtype)
+# print(b.shape) #wypisanie rozmiaru tablicy
+# print(a.ndim) # można też sprawdzić ilość wymiarów tablicy
+#
+# m = np.array([np.arange(5), np.arange(5)]) #stworzenie tablicy wielowymiarowej może wyglądać tak
+# print(m)
+# print(m.shape)
+# print(m.ndim)
+# print(type(m))
 
-######
+# zera = np.zeros((3,3))
+# jedynki = np.ones((3,3))
+#
+# print(zera)
+# print(jedynki)
+#
+# print(zera.dtype)
+# print(jedynki.dtype)
+#
+# pusta = np.empty((2,2))
+# print(pusta)
+#
+# poz_1 = pusta[1,1]
+# poz_2 = pusta[0,1]
+# print(poz_1)
+# print(poz_2)
 
-# class Kwadrat(Kształty):
-#     def __init__(self,x):
-#         self.x = x
-#         self.y = x
-#     def __str__(self):
-#         return 'Kwadrat o boku {}'.format(self.x)
-# kwadrat = Kwadrat(10)
-# print(kwadrat)
+# macierz = np.array([[1,2,3],[3,4,5]])
+# print(macierz)
+#
+# liczby = np.arange(1, 2,0.2)
+# print(liczby)
+# liczby_lin= np.linspace(1,10,10)
+# print(liczby_lin)
 
-############################
+# z = np.indices((5,5))
+# print(z)
 
-class Osoba:
-    def __init__(self, imie, nazwisko):
-        self.imie = imie
-        self.nazwisko = nazwisko
-    def przedstaw_sie(self):
-        return "{} {}".format(self.imie, self.nazwisko)
+# x, y = np.mgrid[0:4, 0:5]
+# print(x)
+# print(y)
 
-class Pracownik(Osoba):
-    def __init__(self, imie, nazwisko, pensja):
-        # wywołanie konstruktora klasy bazowej
-        Osoba.__init__(self, imie, nazwisko)
-        # lub drugi sposób
-        # super().__init__(imie, nazwisko)
-        self.pensja = pensja
-    def przedstaw_sie(self):
-        return "{} {}, jestem zwyklym pracownikiem i zarabiam {}". format(self.imie, self.nazwisko, self.pensja)
+# mat_diag = np.diag([a for a in range(1,3)])
+# print(mat_diag)
+#
+# mat_diag_k = np.diag([a*2 for a in range(1,5)],-1)
+# print(mat_diag_k)
 
-class Menadzer(Pracownik):
-    def przedstaw_sie(self):
-        return "{} {}, jestem menadżerem i zarabiam {}".format(self.imie, self.nazwisko, self.pensja)
-jozek = Pracownik('Józef', 'Bajka', 2000)
-adrian = Menadzer('Adrian', 'Mikulski', 12000)
+# z = np.fromiter([x for x in range(1,5)], dtype='int32')
+# print(z)
 
-print(jozek.przedstaw_sie())
-print(adrian.przedstaw_sie())
-print(" ")
+# michal = b'Michael'
+# mic = np.frombuffer(michal,dtype='S1')
+# print(mic)
+# mar_2 = np.frombuffer(michal, dtype='S2') ??
 
-#########
+# michal = 'Michael'
+# mic_3 = np.array(list(michal))
+# mic_4 = np.array(list(michal), dtype='S1')
+# mic_5 = np.array(list(b'Marcin'))
+# mic_6 = np.fromiter(michal,dtype='S1')
+# mic_7 = np.fromiter(michal,dtype='U1')
+#
+# print(mic_3)
+# print(mic_4)
+# print(mic_5)
+# print(mic_6)
+# print(mic_7)
 
-class Osoba:
-    def __init__(self, imie, nazwisko):
-        self.imie = imie
-        self.nazwisko = nazwisko
-    def przedstaw_sie(self):
-        return "{} {}".format(self.imie, self.nazwisko)
+# mat = np.ones((2,2))
+# mat1 = np.ones((2,2))
+# # mat = mat + mat1
+# print(mat)
+# print(mat + mat1)
+# print(mat - mat1)
+# print(mat*mat1)
+# print(mat/mat1)
 
-class Pracownik:
-    def __init__(self, pensja):
-        self.pensja = pensja
+# a = np.arange(10)
+# print(a)
+# s = slice(2,7,2)
+# print(a[s])
+# slajs = range(2,7,2)
+# print(a[slajs])
 
-class Menadzer(Osoba, Pracownik):
-    def __init__(self, imie, nazwisko, pensja):
-        Osoba.__init__(self, imie,nazwisko)
-        Pracownik.__init__(self, pensja)
+# print(a[2:7:2])
+# print(a[:5])
+# print(a[2:5])
 
-    def przedstaw_sie(self):
-        return "{} {}, jestem menadżerem i zarabiam {}".format(self.imie, self.nazwisko, self.pensja)
+# mat = np.arange(20)
+# print(mat)
+# matm = mat.reshape((5,4))
+# print(matm, "\n")
+# print(matm[1:])
+# print(matm[:,1])
+# print(matm[:,-1:])
+# print(matm[2:6, 1:3])
+# print(matm[:, range(2,4,2)])
+# print('')
 
-adrian = Menadzer("Adrian", "Mikulski", 12000)
-print(adrian.przedstaw_sie())
-print(" ")
+jd = np.array([[10, 20, 30],[40, 50, 60], [70, 80, 90]])
+print(jd,"\n")
+wiersze = np.array([[0, 0], [2, 2]])
+print(wiersze, "\n")
+kolumny = np.array([[0, 2], [0, 2]])
+print(kolumny, "\n")
+y = jd[wiersze,kolumny]
+print(y, "\n")
 
-#################
-
-# for element in range(1,11):
-#     print(element)
-
-######
-
-# imie = "Reks"
-# it = iter(imie)
-# print(it)
-# # na wyjściu <str_iterator object at 0x000001CEB9A2F6D0>
-# print(next(it))# na wyjściu R
-# print(next(it))# na wyjściu e
-# print(next(it))# na wyjściu k
-# print(next(it))# na wyjściu s
-# print(next(it))# Traceback (most recent call last):
-
-################
-
-class Wspak:
-    def __init__(self, data):
-        self.data = data
-        self.index = len(data)
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index == 0:
-            raise StopIteration
-        self.index = self.index -1
-        return self.data[self.index]
-
-napis = Wspak('skurski')
-print(napis.__next__())
-for a in napis:
-    print(a)
-
-
-###############
-print(" ")
-
-def reverse(data):
-    for index in range(len(data)-1, -1, -1):
-        yield data[index]
-
-for x in reverse("Feliks"):
-    print(x)
-
-print(" ")
-for y in reverse("rekin"):
-    print(y)
-
-##########
-print(" ")
-literowanie =(literson for literson in ("Zdzisław"))
-
-print(next(literowanie))
-print(next(literowanie))
-print(next(literowanie))
-print(next(literowanie))
-
-
-print(" ")
-
-########
+x = np.array([[10, 20, 30],[40, 50, 60], [70, 80, 90]])
+print(x, "\n")
 
