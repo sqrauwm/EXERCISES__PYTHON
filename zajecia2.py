@@ -14,7 +14,7 @@
 # print(type(a))
 # a = int(a)
 # print(type(a))
-
+ewqewqw
 
 # a = input('wczytaj pierwszą liczbę: ')
 # b = input('wczytaj drugą liczbę: ')
